@@ -1,0 +1,27 @@
+#---base setting---
+alignment tl
+background no no no
+double_buffer yes
+draw_borders no
+draw_graph_borders no
+draw_shades yes
+out_to_console yes
+out_to_x no
+override_utf8_locale yes
+short_units yes
+temperature_unit celsius
+total_run_times 0
+update_interval 1
+use_xft yes
+xftfont droid sans:size=9
+
+own_window no
+
+#---music setting---
+#mpd_host 
+#mpd_password
+#mpd_port
+
+TEXT
+#${time %b %d %a %H:%M} | [CUP:${cpu}% ${acpitemp}°C] [RAM:${memperc}%] | [Bat:${battery_short}-${battery_time}] | [Volume:${mixer}%] | ${if_existing /proc/net/route eth0}[IP:${addrs eth0} Up:${upspeed eth0} Down:${downspeedf eth0}]$endif${if_up wlan0}[wifi(${wireless_essid wlan0})-${wireless_link_bar 1,6 wlan0}:${wireless_link_qual_perc wlan0}%-IP:${addrs wlan0} Up:${upspeed wlan0}Kb/s Down:${downspeedf wlan0}Kb/s]$endif  Music-${mpd_status}:${mpd_smart} ${mpd_track} ${mpd_elapsed}/${mpd_length}
+${time %m-%d %a %H:%M} | CUP:${cpu}% RAM:${memperc}% | Bat:${battery_short} ${battery_time} | Vol:${mixer}% | ${if_existing /proc/net/route eth0} ${addrs eth0} Up:${upspeed eth0} Down:${downspeedf eth0}$endif${if_up wlan0}W:(${wireless_essid wlan0})${wireless_link_bar 1,5 wlan0}:${wireless_link_qual_perc wlan0}%-${addrs wlan0}$endif  M-${mpd_status}:${mpd_smart}${mpd_track}-${mpd_percent}% ${mpd_elapsed}/${mpd_length}
