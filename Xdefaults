@@ -13,9 +13,7 @@ URxvt.tintColot:black
 
 URxvt.shading:5
 URxvt.scrollBar:False
-URxvt.font:-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-16
-!URxvt.font:-misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
-!URxvt.font:-misc-fixed-medium-r-normal--0-0-75-75-c-0-iso8859-16 ,[codeset=zh_CN.utf8]xft:Droid Sans Fallback:size=8
+URxvt.font:-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-16,[codeset=zh_CN.utf8]URxvt.font:7x14,xft:WenQuanYi Bitmap Song-10
 !URxvt.saveLines:1000
 URxvt.borderLess:false
 !URxvt.pastableTabs:
