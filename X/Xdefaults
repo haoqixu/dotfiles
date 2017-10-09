@@ -1,0 +1,55 @@
+URxvt.background:#0d0d0d
+URxvt.foreground:#f8f8f2
+URxvt.colorBD:cyan3
+URxvt.colorIT:cyan3
+URxvt.colorUL:green
+URxvt.jumpScroll:False
+URxvt.skipScroll:False
+URxvt.tintColot:#0d0d0d
+URxvt.scrollBar:False
+URxvt.borderLess:false
+URxvt.cursorBlink:true
+URxvt.urlLauncher:firefox
+URxvt.modifier:alt
+URxvt.inputMethod:fcitx
+URxvt.termName: xterm-256color
+URxvt.font:-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-16,[codeset=zh_CN.utf8]URxvt.font:7x14,xft:WenQuanYi Bitmap Song-10,[codeset=zh_CN.gb2312]-misc-droid sans fallback-medium-r-normal--0-0-0-0-p-0-gb2312.1980-0
+!URxvt.transparent:True
+!URxvt.fading:0
+!URxvt.fadeColor:black
+!URxvt.shading:5
+!URxvt.saveLines:1000
+!URxvt.pastableTabs:
+
+URxvt*keysym.Home: \033[1~
+URxvt*keysym.End: \033[8~
+
+
+URxvt.perl-ext-common: default,matcher,tabbedex,font-size,keyboard-select
+
+! Select mode
+!! Alt + Esc: activate the select mode
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+
+! URLs
+!! ^Del: open the last URL in firefox
+!! Alt + Del: display a list of urls
+!! Click the URL with button 1 of the mouse: open the URL in firefox
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
+URxvt.matcher.rend.0: Uline Bold fg5
+URxvt.matcher.button: 1
+
+! Advanced Tabs Management
+!! shift + Down: create a new tab
+!! shift + Up: rename the current tab
+!! shift + Left/Right: shift to the previous/next tab
+!! ^D: close the current tab (exit the shell)
+URxvt.tabbed.autohide: true
+
+! Font size
+!! ^Up: increase the font size
+!! ^Down: decrease the font size
+URxvt.keysym.C-Up:      perl:font-size:increase
+URxvt.keysym.C-Down:    perl:font-size:decrease

@@ -1,3 +1,4 @@
+! Swap Caps_Locks  and Control_L
 remove lock =Caps_Lock
 remove control = Control_L
 keycode  37 = Caps_Lock NoSymbol Caps_Lock
