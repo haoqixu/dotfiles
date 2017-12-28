@@ -8,3 +8,6 @@ Session.vim
 .netrwhist
 *~
 
+
+nvim/.config/nvim/plugged/
+nvim/.config/nvim/autoload/plug.vim.old
