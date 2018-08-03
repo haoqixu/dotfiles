@@ -338,6 +338,7 @@ cnoremap <c-p> <up>
 :autocmd FileType rst,python     :setlocal et ts=4 sw=4 sts=4
 :autocmd FileType javascript,html,css,vue,scheme,jinja :setlocal et ts=2 sw=2 sts=2
 
+set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
