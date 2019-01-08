@@ -72,6 +72,7 @@ Plug 'ncm2/ncm2-ultisnips'
 " --------------------------------
 " Lint & formater
 " --------------------------------
+Plug 'editorconfig/editorconfig-vim'
 Plug 'w0rp/ale'
 "Plug 'junegunn/vim-easy-align'
 "Plug 'scrooloose/syntastic'
@@ -166,8 +167,6 @@ set pastetoggle=<leader>p
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
-
-"nnoremap <leader>G :Goyo<CR>
 
 :nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 :nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -367,38 +366,4 @@ let g:markdown_include_jekyll_support = 0
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
-
-
-"" --------------------------------
-"" goyo.vim + limelight.vim
-"" --------------------------------
-"let g:limelight_paragraph_span = 1
-"let g:limelight_priority = -1
-
-"function! s:goyo_enter()
-  "if has('gui_running')
-    "set fullscreen
-    "set background=light
-    "set linespace=7
-  "elseif exists('$TMUX')
-    "silent !tmux set status off
-  "endif
-  "Limelight
-  "let &l:statusline = '%M'
-  "hi StatusLine ctermfg=red guifg=red cterm=NONE gui=NONE
-"endfunction
-
-"function! s:goyo_leave()
-  "if has('gui_running')
-    "set nofullscreen
-    "set background=dark
-    "set linespace=0
-  "elseif exists('$TMUX')
-    "silent !tmux set status on
-  "endif
-  "Limelight!
-"endfunction
-
-"autocmd! User GoyoEnter nested call <SID>goyo_enter()
-"autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
