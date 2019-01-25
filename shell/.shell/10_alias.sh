@@ -1,7 +1,7 @@
 alias l='ls -lah'
 alias la='ls -lAh'
 alias ll='ls -lh'
-alias ls='ls -G'
+alias ls='ls --color=auto'
 alias lsa='ls -lah'
 
 alias rm='rm -i'

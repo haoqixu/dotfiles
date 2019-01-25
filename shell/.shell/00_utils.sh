@@ -1,13 +1,23 @@
 #!/bin/bash
 
-# Append our default paths
+# Append/Prepend our default paths
 # ref: archlinux /etc/profile
 appendpath () {
+    case ":$PATH:" in
+        *:"$1":*)  # already in PATH
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
+    export PATH
+}
+
+prependpath () {
     case ":$PATH:" in
         *:"$1":*)
             ;;
         *)
-            PATH="${PATH:+$PATH:}$1"
+            PATH="$1${PATH:+:$PATH}"
     esac
     export PATH
 }
@@ -21,13 +31,13 @@ proxy_set () {
 
     if (( $# > 0)); then
         export http_proxy="$1" \
-            https_proxy=$http_proxy \
-            ftp_proxy=$http_proxy \
-            rsync_proxy=$http_proxy \
-            HTTP_PROXY=$http_proxy \
-            HTTPS_PROXY=$http_proxy \
-            FTP_PROXY=$http_proxy \
-            RSYNC_PROXY=$http_proxy
+            https_proxy="$1" \
+            ftp_proxy="$1" \
+            rsync_proxy="$1" \
+            HTTP_PROXY="$1" \
+            HTTPS_PROXY="$1" \
+            FTP_PROXY="$1" \
+            RSYNC_PROXY="$1"
         echo "Proxy environment variable set."
         echo "No Proxy: $no_proxy"
         return 0
