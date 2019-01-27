@@ -86,6 +86,7 @@ Plug 'junegunn/fzf'
 " Plug 'Shougo/denite.nvim'
 
 Plug 'easymotion/vim-easymotion'
+Plug 'jsfaint/gen_tags.vim'
 
 
 " --------------------------------
@@ -125,7 +126,7 @@ Plug 'google/yapf',			{ 'for': 'python' }
 Plug 'timothycrosley/isort',		{ 'for': 'python' }
 
 " Mics
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/nginx.vim'
 Plug 'honza/dockerfile.vim'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
