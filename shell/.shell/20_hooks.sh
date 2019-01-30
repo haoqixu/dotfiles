@@ -21,8 +21,14 @@ appendpath "$HOME/.rvm/bin"
 
 
 # Python
+# pyenv: python version manager
 export PYTHONSTARTUP="$HOME/dotfiles/python/pythonstartup.py"
-
+if [[ -d "$HOME/.pyenv" ]]; then
+    prependpath "$HOME/.pyenv/bin"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    export PYENV_ROOT="$HOME/.pyenv"
+fi
 
 # Golang
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
