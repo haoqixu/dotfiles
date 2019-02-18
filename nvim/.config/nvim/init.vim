@@ -16,7 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
 " --------------------------------
 " General
 " --------------------------------
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+"Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
@@ -39,9 +39,9 @@ Plug 'itchyny/lightline.vim'
 "Plug 'junegunn/limelight.vim'
 
 " theme
-Plug 'tomasr/molokai'
+"Plug 'tomasr/molokai'
+"Plug 'rakr/vim-one'
 Plug 'morhetz/gruvbox'
-Plug 'rakr/vim-one'
 Plug 'junegunn/vim-emoji'
 
 " --------------------------------
@@ -65,9 +65,6 @@ Plug 'ncm2/ncm2-jedi'
 Plug 'ncm2/ncm2-go'
 Plug 'ncm2/ncm2-cssomni'
 Plug 'ncm2/ncm2-ultisnips'
-"Plug 'roxma/nvim-completion-manager'
-"Plug 'roxma/ncm-clang'
-"Plug 'calebeby/ncm-css'
 
 " --------------------------------
 " Lint & formater
@@ -80,8 +77,8 @@ Plug 'w0rp/ale'
 " --------------------------------
 " Search & Browse
 " --------------------------------
-Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf'
+"Plug 'dyng/ctrlsf.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'Shougo/denite.nvim'
 
@@ -122,11 +119,11 @@ Plug 'dhruvasagar/vim-table-mode',		{ 'for': 'markdown' }
 Plug 'lvht/tagbar-markdown',			{ 'for': 'markdown' }
 
 " Python
-Plug 'google/yapf',			{ 'for': 'python' }
-Plug 'timothycrosley/isort',		{ 'for': 'python' }
+"Plug 'google/yapf',			{ 'for': 'python' }
+"Plug 'timothycrosley/isort',		{ 'for': 'python' }
 
 " Mics
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/nginx.vim'
 Plug 'honza/dockerfile.vim'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
