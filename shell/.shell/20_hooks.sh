@@ -26,7 +26,7 @@ export PYTHONSTARTUP="$HOME/dotfiles/python/pythonstartup.py"
 if [[ -d "$HOME/.pyenv" ]]; then
     prependpath "$HOME/.pyenv/bin"
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+    # eval "$(pyenv virtualenv-init -)"
     export PYENV_ROOT="$HOME/.pyenv"
 fi
 
