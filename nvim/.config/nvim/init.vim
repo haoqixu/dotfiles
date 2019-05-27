@@ -17,12 +17,13 @@ call plug#begin('~/.config/nvim/plugged')
 " General
 " --------------------------------
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'liuchengxu/vista.vim'  " Viewer & Finder for LSP symbols and tags in Vim
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'justinmk/vim-gtfo'  " Go to Terminal or File manager
 "Plug 'ianva/vim-youdao-translater'
-"Plug 'justinmk/vim-gtfo'
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 if has('mac')
   Plug 'CodeFalling/fcitx-vim-osx'
@@ -71,8 +72,9 @@ Plug 'ncm2/ncm2-ultisnips'
 " --------------------------------
 Plug 'editorconfig/editorconfig-vim'
 Plug 'w0rp/ale'
+Plug 'ambv/black'
 "Plug 'junegunn/vim-easy-align'
-"Plug 'scrooloose/syntastic'
+"Plug 'janko/vim-test'
 
 " --------------------------------
 " Search & Browse
@@ -83,7 +85,8 @@ Plug 'junegunn/fzf'
 " Plug 'Shougo/denite.nvim'
 
 Plug 'easymotion/vim-easymotion'
-Plug 'jsfaint/gen_tags.vim'
+"Plug 'jsfaint/gen_tags.vim'
+Plug 'ludovicchabant/vim-gutentags'
 
 
 " --------------------------------
@@ -95,6 +98,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 " Editing
 " --------------------------------
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-expand-region'
@@ -103,32 +107,34 @@ Plug 'terryma/vim-expand-region'
 " Version Control & Diff
 " --------------------------------
 Plug 'tpope/vim-fugitive'
-"Plug 'junegunn/gv.vim' 'gregsexton/gitv'
+Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' }
 
 " --------------------------------
 " Language Related
 " --------------------------------
 " Markdown
-Plug 'iamcco/mathjax-support-for-mkdp',		{ 'for': 'markdown' }
-Plug 'MikeCoder/markdown-preview.vim',		{ 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'markdown' }
 Plug 'gabrielelana/vim-markdown',		{ 'for': 'markdown' }
 Plug 'joker1007/vim-markdown-quote-syntax',	{ 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc',		{ 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode',		{ 'for': 'markdown' }
 Plug 'lvht/tagbar-markdown',			{ 'for': 'markdown' }
 
+Plug 'Lervag/vimtex'
+
 " Python
 "Plug 'google/yapf',			{ 'for': 'python' }
 "Plug 'timothycrosley/isort',		{ 'for': 'python' }
 
 " Mics
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/nginx.vim'
 Plug 'honza/dockerfile.vim'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'htm', 'css', 'js', 'vue', 'jinja', 'jinja.html'] }
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'posva/vim-vue'
@@ -153,6 +159,7 @@ set mouse=a
 
 " Enable filetype plugins
 filetype plugin indent on
+let g:indentLine_setConceal = 0
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -306,8 +313,19 @@ set viminfo^=%
 " ============================================================================
 "  Misc
 " ============================================================================
-let g:python_host_prog = $HOME . '/.virtualenvs/nvim-py2/bin/python'
-let g:python3_host_prog = $HOME . '/.virtualenvs/nvim-py3/bin/python'
+if has('mac')
+    " macOS
+    let g:python_host_prog = $HOME . '/.virtualenvs/nvim-py2/bin/python'
+    let g:python3_host_prog = $HOME . '/.virtualenvs/nvim-py3/bin/python'
+else
+    " linux
+    let g:python_host_prog = '/usr/bin/python2'
+    let g:python3_host_prog = '/usr/bin/python3'
+    let g:ncm2_jedi#environment = '/usr/bin/python3'
+endif
+
+let g:ale_python_auto_pipenv = 1
+let g:ale_python_flake8_auto_pipenv = 1
 
 " ============================================================================
 "  Temp
@@ -322,6 +340,7 @@ set magic
 set fileencodings=utf8,cp936,gb18030,big5
 
 set clipboard=unnamed
+set clipboard+=unnamedplus
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 
