@@ -138,6 +138,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'posva/vim-vue'
+Plug 'nathangrigg/vim-beancount'
 
 call plug#end()
 
