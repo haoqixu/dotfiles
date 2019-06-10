@@ -137,6 +137,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'hail2u/vim-css3-syntax'
+Plug 'ap/vim-css-color'
 Plug 'posva/vim-vue'
 Plug 'nathangrigg/vim-beancount'
 
