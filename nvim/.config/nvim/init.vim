@@ -108,7 +108,7 @@ Plug 'terryma/vim-expand-region'
 " --------------------------------
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' }
+Plug 'mhinz/vim-signify'
 
 " --------------------------------
 " Language Related
@@ -140,6 +140,8 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'ap/vim-css-color'
 Plug 'posva/vim-vue'
 Plug 'nathangrigg/vim-beancount'
+
+Plug 'vim-scripts/drawit', { 'on': 'DrawIt' }
 
 call plug#end()
 
