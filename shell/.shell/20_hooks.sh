@@ -19,6 +19,8 @@ appendpath "$HOME/.rvm/bin"
 # Rust
 [[ -s "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
+# Go
+[[ -d "$HOME/go/bin" ]] && appendpath "$HOME/go/bin"
 
 # Python
 # pyenv: python version manager
