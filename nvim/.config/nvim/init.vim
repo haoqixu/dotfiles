@@ -57,15 +57,16 @@ endif
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-pyclang'
-Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-go'
-Plug 'ncm2/ncm2-cssomni'
-Plug 'ncm2/ncm2-ultisnips'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-path'
+" Plug 'ncm2/ncm2-pyclang'
+" Plug 'ncm2/ncm2-jedi'
+" Plug 'ncm2/ncm2-go'
+" Plug 'ncm2/ncm2-cssomni'
+" Plug 'ncm2/ncm2-ultisnips'
 
 " --------------------------------
 " Lint & formater
@@ -128,7 +129,7 @@ Plug 'Lervag/vimtex'
 "Plug 'timothycrosley/isort',		{ 'for': 'python' }
 
 " Mics
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-scripts/nginx.vim'
 Plug 'honza/dockerfile.vim'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
@@ -361,6 +362,13 @@ cnoremap <c-p> <up>
 set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
       \ }
 
 let g:emmet_html5 = 1
@@ -385,6 +393,6 @@ let g:markdown_enable_spell_checking = 0
 let g:markdown_include_jekyll_support = 0
 :autocmd FileType markdown :silent TableModeEnable
 
-autocmd BufEnter * call ncm2#enable_for_buffer()
+" autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
