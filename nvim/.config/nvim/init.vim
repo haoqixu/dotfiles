@@ -122,6 +122,8 @@ Plug 'mzlogin/vim-markdown-toc',		{ 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode',		{ 'for': 'markdown' }
 Plug 'lvht/tagbar-markdown',			{ 'for': 'markdown' }
 
+Plug 'saltstack/salt-vim'
+
 Plug 'Lervag/vimtex'
 
 " Python
