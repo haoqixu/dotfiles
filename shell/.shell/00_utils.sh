@@ -49,6 +49,7 @@ proxy_set () {
 proxy_unset () {
     unset http_proxy https_proxy ftp_proxy rsync_proxy \
           HTTP_PROXY HTTPS_PROXY FTP_PROXY RSYNC_PROXY
+    unset no_proxy NO_PROXY
     echo "Proxy environment variable removed."
 }
 
