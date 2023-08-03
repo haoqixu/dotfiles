@@ -18,12 +18,11 @@ call plug#begin('~/.config/nvim/plugged')
 " --------------------------------
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'liuchengxu/vista.vim'  " Viewer & Finder for LSP symbols and tags in Vim
+
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'Yggdroot/indentLine'
-"Plug 'justinmk/vim-gtfo'  " Go to Terminal or File manager
-"Plug 'ianva/vim-youdao-translater'
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 
 if has('mac')
   Plug 'CodeFalling/fcitx-vim-osx'
@@ -42,8 +41,13 @@ Plug 'itchyny/lightline.vim'
 " theme
 "Plug 'tomasr/molokai'
 "Plug 'rakr/vim-one'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+"Plug 'ellisonleao/gruvbox.nvim'
+Plug 'gruvbox-community/gruvbox'
 Plug 'junegunn/vim-emoji'
+Plug 'ryanoasis/vim-devicons'
+Plug 'kristijanhusak/defx-icons'
+Plug 'kristijanhusak/defx-git'
 
 " --------------------------------
 " Completion
@@ -52,42 +56,35 @@ Plug 'junegunn/vim-emoji'
 " Requires vim8 with has('python') or has('python3')
 " Requires the installation of msgpack-python. (pip install msgpack-python)
 if !has('nvim')
+  Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'ncm2/ncm2'
-" Plug 'roxma/nvim-yarp'
-" Plug 'ncm2/ncm2-bufword'
-" Plug 'ncm2/ncm2-path'
-" Plug 'ncm2/ncm2-pyclang'
-" Plug 'ncm2/ncm2-jedi'
-" Plug 'ncm2/ncm2-go'
-" Plug 'ncm2/ncm2-cssomni'
-" Plug 'ncm2/ncm2-ultisnips'
+"Plug 'github/copilot.vim'
+
 
 " --------------------------------
 " Lint & formater
 " --------------------------------
 Plug 'editorconfig/editorconfig-vim'
-Plug 'w0rp/ale'
-Plug 'ambv/black'
-"Plug 'junegunn/vim-easy-align'
+Plug 'dense-analysis/ale'
+Plug 'psf/black', { 'branch': 'stable' }
+Plug 'junegunn/vim-easy-align'
 "Plug 'janko/vim-test'
 
 " --------------------------------
 " Search & Browse
 " --------------------------------
 Plug 'junegunn/fzf'
-"Plug 'dyng/ctrlsf.vim'
+" Plug 'dyng/ctrlsf.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'Shougo/denite.nvim'
 
 Plug 'easymotion/vim-easymotion'
 "Plug 'jsfaint/gen_tags.vim'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 
 
 " --------------------------------
@@ -101,6 +98,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-abolish'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-expand-region'
 
@@ -108,6 +106,7 @@ Plug 'terryma/vim-expand-region'
 " Version Control & Diff
 " --------------------------------
 Plug 'tpope/vim-fugitive'
+Plug 'christoomey/vim-conflicted'
 Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 
@@ -116,35 +115,45 @@ Plug 'mhinz/vim-signify'
 " --------------------------------
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'markdown' }
-Plug 'gabrielelana/vim-markdown',		{ 'for': 'markdown' }
+"Plug 'gabrielelana/vim-markdown',		{ 'for': 'markdown' }
 Plug 'joker1007/vim-markdown-quote-syntax',	{ 'for': 'markdown' }
 Plug 'mzlogin/vim-markdown-toc',		{ 'for': 'markdown' }
 Plug 'dhruvasagar/vim-table-mode',		{ 'for': 'markdown' }
 Plug 'lvht/tagbar-markdown',			{ 'for': 'markdown' }
 
+Plug 'jvirtanen/vim-hcl', { 'for': 'hcl', 'branch': 'main' }
 Plug 'saltstack/salt-vim'
+Plug 'tpope/vim-scriptease'
 
-Plug 'Lervag/vimtex'
+" Plug 'Lervag/vimtex'
+Plug 'cespare/vim-toml'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Python
 "Plug 'google/yapf',			{ 'for': 'python' }
 "Plug 'timothycrosley/isort',		{ 'for': 'python' }
 
 " Mics
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'vim-scripts/nginx.vim'
 Plug 'honza/dockerfile.vim'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
-Plug 'mattn/emmet-vim', { 'for': ['html', 'htm', 'css', 'js', 'vue', 'jinja', 'jinja.html'] }
+" Plug 'mattn/emmet-vim', { 'for': ['html', 'htm', 'css', 'javascript', 'vue', 'jinja', 'jinja.html', 'javascriptreact', 'typescriptreact', 'typescript'] }
 Plug 'pangloss/vim-javascript'
+"Plug 'chemzqm/vim-jsx-improve'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'ap/vim-css-color'
 Plug 'posva/vim-vue'
 Plug 'nathangrigg/vim-beancount'
 
-Plug 'vim-scripts/drawit', { 'on': 'DrawIt' }
+" Plug 'vim-scripts/drawit', { 'on': 'DrawIt' }
+Plug 'jbyuki/venn.nvim'
 
 call plug#end()
 
@@ -179,6 +188,8 @@ set pastetoggle=<leader>p
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
+
+nnoremap <leader>f :FZF<cr>
 
 :nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 :nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -322,8 +333,8 @@ set viminfo^=%
 " ============================================================================
 if has('mac')
     " macOS
-    let g:python_host_prog = $HOME . '/.virtualenvs/nvim-py2/bin/python'
-    let g:python3_host_prog = $HOME . '/.virtualenvs/nvim-py3/bin/python'
+    " let g:python_host_prog = $HOME . '/.virtualenvs/nvim-py2/bin/python'
+    " let g:python3_host_prog = $HOME . '/.virtualenvs/nvim-py3/bin/python'
 else
     " linux
     let g:python_host_prog = '/usr/bin/python2'
@@ -366,24 +377,103 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [['lineinfo', 'offset'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+      \ },
+      \   'inactive': {
+      \     'left': [['filename']],
+      \     'right': [['lineinfo', 'offset'], ['percent']]
       \ },
       \ 'component_function': {
-      \   'cocstatus': 'coc#status'
+      \   'gitbranch': 'FugitiveHead',
+      \   'cocstatus': 'coc#status',
       \ },
+      \ 'component': {
+      \   'offset': '%o',
+      \ }
       \ }
 
-let g:emmet_html5 = 1
-let g:user_emmet_leader_key = '<C-y>'
+" let g:emmet_html5 = 1
+" let g:user_emmet_leader_key = '<C-y>'
 
 let g:NERDSpaceDelims = 1
+
+let g:vista_default_executive = 'ctags'
+let g:vista_executive_for = {
+  \ 'cpp': 'coc',
+  \ 'go': 'coc',
+  \ }
+
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Add `:Format` command to format current buffer
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" Formatting selected code.
+xmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>cf  <Plug>(coc-format-selected)
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Applying code actions to the selected code block
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying code actions at the cursor position
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer
+nmap <leader>as  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " --------------------------------
 " ALE
 " --------------------------------
+let g:ale_disable_lsp = 1
+let g:ale_fix_on_save = 0
+let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_linters = {
-\	'c': ['clang'],
-\	'cpp': ['clang']
+\   'c': ['clang'],
+\   'cpp': ['clang'],
+\   'javascript': ['prettier'],
+\   'javascriptreact': ['prettier'],
+\   'typescript': ['prettier'],
+\   'typescriptreact': ['prettier'],
+\   'css': ['prettier'],
 \}
 
 " --------------------------------
@@ -398,3 +488,110 @@ let g:markdown_include_jekyll_support = 0
 " autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
+nmap <leader>ga <Plug>(EasyAlign)
+xmap <leader>ga <Plug>(EasyAlign)
+
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    -- Modules and its options go here
+    highlight = { enable = true },
+    incremental_selection = { enable = true },
+    textobjects = { enable = true },
+    indent = { enable = true },
+}
+EOF
+
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
+" Defx {{{
+nnoremap <silent> - :<C-u>call <SID>open_defx()<CR>
+
+function! s:open_defx() abort
+    let g:defx_icons_enable_syntax_highlight = 0
+    call defx#custom#option('_', {
+                \ 'columns': 'git:indent:icons:space:filename',
+                \ 'buffer_name': 'defx',
+                \ 'show_ignored_files': 0,
+                \ 'toggle': 0,
+                \ 'resume': 1
+                \ })
+    Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+endfunction
+
+autocmd BufWritePost * call defx#redraw()
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+
+    " Define mappings
+    nnoremap <silent><buffer><expr> <CR>
+                \ defx#do_action('open')
+    nnoremap <silent><buffer><expr> c
+                \ defx#do_action('copy')
+    nnoremap <silent><buffer><expr> m
+                \ defx#do_action('move')
+    nnoremap <silent><buffer><expr> p
+                \ defx#do_action('paste')
+    nnoremap <silent><buffer><expr> l
+                \ defx#do_action('open')
+    nnoremap <silent><buffer><expr> E
+                \ defx#do_action('open', 'vsplit')
+    nnoremap <silent><buffer><expr> P
+                \ defx#do_action('preview')
+    nnoremap <silent><buffer><expr> o
+                \ defx#do_action('open_tree', ['toggle', 'nested'])
+    nnoremap <silent><buffer><expr> K
+                \ defx#do_action('new_directory')
+    nnoremap <silent><buffer><expr> N
+                \ defx#do_action('new_file')
+    nnoremap <silent><buffer><expr> M
+                \ defx#do_action('new_multiple_files')
+    nnoremap <silent><buffer><expr> C
+                \ defx#do_action('toggle_columns',
+                \                'mark:git:indent:icon:filename:type:size:time')
+    nnoremap <silent><buffer><expr> S
+                \ defx#do_action('toggle_sort', 'time')
+    nnoremap <silent><buffer><expr> d
+                \ defx#do_action('remove')
+    nnoremap <silent><buffer><expr> r
+                \ defx#do_action('rename')
+    nnoremap <silent><buffer><expr> !
+                \ defx#do_action('execute_command')
+    nnoremap <silent><buffer><expr> x
+                \ defx#do_action('execute_system')
+    nnoremap <silent><buffer><expr> yy
+                \ defx#do_action('yank_path')
+    nnoremap <silent><buffer><expr> .
+                \ defx#do_action('toggle_ignored_files')
+    nnoremap <silent><buffer><expr> ;
+                \ defx#do_action('repeat')
+    nnoremap <silent><buffer><expr> h
+                \ defx#do_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> ~
+                \ defx#do_action('cd')
+    nnoremap <silent><buffer><expr> q
+                \ defx#do_action('quit')
+    nnoremap <silent><buffer><expr> <Space>
+                \ defx#do_action('toggle_select')
+    nnoremap <silent><buffer><expr> *
+                \ defx#do_action('toggle_select_all')
+    nnoremap <silent><buffer><expr> j
+                \ line('.') == line('$') ? 'gg' : 'j'
+    nnoremap <silent><buffer><expr> k
+                \ line('.') == 1 ? 'G' : 'k'
+    nnoremap <silent><buffer><expr> <C-l>
+                \ defx#do_action('redraw')
+    nnoremap <silent><buffer><expr> <C-g>
+                \ defx#do_action('print')
+    nnoremap <silent><buffer><expr> cd
+                \ defx#do_action('change_vim_cwd')
+
+    nnoremap <buffer><silent> [c <Plug>(defx-git-prev)
+    nnoremap <buffer><silent> ]c <Plug>(defx-git-next)
+    nnoremap <buffer><silent> ]a <Plug>(defx-git-stage)
+    nnoremap <buffer><silent> ]r <Plug>(defx-git-reset)
+    nnoremap <buffer><silent> ]d <Plug>(defx-git-discard)
+endfunction
+" }}}

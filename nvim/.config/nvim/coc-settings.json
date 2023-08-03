@@ -1,11 +1,29 @@
 {
   "coc.preferences.diagnostic.displayByAle": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    // "javascriptreact",
+    // "javascript",
+    // "typescriptreact",
+    // "typescript"
+  ],
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "codeLens.enable": true,
+  "java.referencesCodeLens.enabled": true,
+  "java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok.jar",
+  "yaml.schemas": {
+    "/tmp/schemas.json": "test.yaml"
+  },
   "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "args": [],
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
     }
-  }
+  },
+  "Lua.telemetry.enable": true,
+  "java.format.enabled": true
 }
