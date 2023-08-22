@@ -77,7 +77,8 @@ Plug 'junegunn/vim-easy-align'
 " --------------------------------
 " Search & Browse
 " --------------------------------
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Plug 'dyng/ctrlsf.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'Shougo/denite.nvim'
@@ -342,9 +343,6 @@ else
     let g:ncm2_jedi#environment = '/usr/bin/python3'
 endif
 
-let g:ale_python_auto_pipenv = 1
-let g:ale_python_flake8_auto_pipenv = 1
-
 " ============================================================================
 "  Temp
 " ============================================================================
@@ -475,6 +473,10 @@ let g:ale_linters = {
 \   'typescriptreact': ['prettier'],
 \   'css': ['prettier'],
 \}
+let g:ale_use_neovim_diagnostics_api = 1
+let g:ale_go_golangci_lint_package = 1
+let g:ale_python_auto_pipenv = 1
+let g:ale_python_flake8_auto_pipenv = 1
 
 " --------------------------------
 " Markdown
