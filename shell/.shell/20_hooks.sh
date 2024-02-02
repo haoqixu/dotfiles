@@ -2,12 +2,13 @@
 # shellcheck disable=SC1090
 
 
-# Javascript
-# nvm: node version manager
-export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
-[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# NodeJS
+export NVS_HOME="$HOME/.nvs"
+[[ -s "$NVS_HOME/nvs.sh" ]] && . "$NVS_HOME/nvs.sh"
+[[ -d "$HOME/.npm-global/bin" ]] && appendpath "$HOME/.npm-global/bin"
 
+export VOLTA_HOME="$HOME/.volta"
+prependpath "$VOLTA_HOME/bin"
 
 # Ruby
 # rvm: ruby version manager
@@ -35,3 +36,6 @@ fi
 
 # Golang
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
+# common utils
+prependpath "$HOME/bin"

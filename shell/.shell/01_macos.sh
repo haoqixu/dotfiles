@@ -10,3 +10,6 @@ prependpath "/usr/local/opt/coreutils/libexec/gnubin"
 # ref: https://superuser.com/questions/61185/why-do-i-get-files-like-foo-in-my-tarball-on-os-x
 # ref: https://unix.stackexchange.com/questions/9665/create-tar-archive-of-a-directory-except-for-hidden-files
 [[ $OSTYPE == darwin* ]] && export COPYFILE_DISABLE=1
+
+# brew install bash-complete@2
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
