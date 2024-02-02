@@ -24,6 +24,9 @@
       "settings": {}
     }
   },
+  "markdownlint.config": {
+    "line_length": false
+  },
   "Lua.telemetry.enable": true,
   "java.format.enabled": true
 }

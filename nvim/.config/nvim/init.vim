@@ -70,6 +70,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " --------------------------------
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dense-analysis/ale'
+Plug 'bufbuild/vim-buf'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'junegunn/vim-easy-align'
 "Plug 'janko/vim-test'
@@ -472,6 +473,10 @@ let g:ale_linters = {
 \   'typescript': ['prettier'],
 \   'typescriptreact': ['prettier'],
 \   'css': ['prettier'],
+\   'proto': ['buf-lint',],
+\}
+let g:ale_fixers = {
+\   'proto': ['buf-format'],
 \}
 let g:ale_use_neovim_diagnostics_api = 1
 let g:ale_go_golangci_lint_package = 1
@@ -507,6 +512,22 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
+" Copy from meain/vim-jsontogo
+function! s:JsonToGo() range
+    let cmd = [
+        \ '!gojson',
+        \]
+    let cmd = add(cmd, '-name ' . expand('%:r'))
+    let cmd = add(cmd, '-pkg ' . expand('%:r'))
+    execute a:firstline . ',' . a:lastline . join(cmd)
+endfunction
+
+augroup jsontogo
+    autocmd!
+    autocmd FileType go
+        \ command! -bar -nargs=0 -buffer -range=% JsonToGo <line1>,<line2>call s:JsonToGo()
+augroup end
 
 " Defx {{{
 nnoremap <silent> - :<C-u>call <SID>open_defx()<CR>

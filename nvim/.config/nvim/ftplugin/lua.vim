@@ -1,2 +1,2 @@
-setlocal et ts=4 sw=4 sts=4
+setlocal et ts=2 sw=2 sts=2
 set cc=79
