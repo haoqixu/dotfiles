@@ -1,7 +1,15 @@
 ! Swap Caps_Locks  and Control_L
-remove lock =Caps_Lock
-remove control = Control_L
+clear lock
+clear control
 keycode  37 = Caps_Lock NoSymbol Caps_Lock
 keycode  66 = Control_L NoSymbol Control_L
 add lock = Caps_Lock
 add control = Control_L
+
+! Swap left win and left alt
+clear mod1
+clear mod4
+keycode 133 = Alt_L Meta_L Alt_L Meta_L
+keycode 64 = Super_L NoSymbol Super_L
+add mod1 = Alt_L
+add mod4 = Super_L
