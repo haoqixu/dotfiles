@@ -13,3 +13,5 @@ prependpath "/usr/local/opt/coreutils/libexec/gnubin"
 
 # brew install bash-complete@2
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+[[ -f "/opt/homebrew/bin/brew" ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
