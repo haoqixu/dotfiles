@@ -8,7 +8,7 @@ export NVS_HOME="$HOME/.nvs"
 [[ -d "$HOME/.npm-global/bin" ]] && appendpath "$HOME/.npm-global/bin"
 
 export VOLTA_HOME="$HOME/.volta"
-prependpath "$VOLTA_HOME/bin"
+[[ -d "$VOLTA_HOME/bin" ]] && prependpath "$VOLTA_HOME/bin"
 
 # Ruby
 # rvm: ruby version manager
@@ -33,6 +33,8 @@ if [[ -d "$HOME/.pyenv" ]]; then
     # eval "$(pyenv virtualenv-init -)"
     export PYENV_ROOT="$HOME/.pyenv"
 fi
+
+[[ -s "$HOME/.rye/env" ]] && source "$HOME/.rye/env"
 
 # Golang
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"

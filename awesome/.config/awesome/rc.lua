@@ -55,7 +55,8 @@ terminal = os.getenv("TERMINAL") or "alacritty"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 -- screenlocker = "betterlockscreen -l blur"
-screenlocker = "slock"
+-- screenlocker = "slock"
+screenlocker = "i3lock -i locker-bg.png"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.

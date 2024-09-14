@@ -108,6 +108,7 @@ Plug 'terryma/vim-expand-region'
 " Version Control & Diff
 " --------------------------------
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
 Plug 'christoomey/vim-conflicted'
 Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
@@ -415,6 +416,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <silent> th :CocCommand document.toggleInlayHint<CR>
+
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
 
@@ -474,6 +477,7 @@ let g:ale_linters = {
 \   'typescriptreact': ['prettier'],
 \   'css': ['prettier'],
 \   'proto': ['buf-lint',],
+\   'go': [],
 \}
 let g:ale_fixers = {
 \   'proto': ['buf-format'],
@@ -503,7 +507,10 @@ set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:�
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-    -- Modules and its options go here
+    ensure_installed = {
+        "c", "lua", "vim", "vimdoc", "query", "go", "gomod", "gosum", "gotmpl", "terraform", "hcl", "tsx", "typescript", "rust",
+        "cue", "rego", "java", "proto", "yaml", "graphql", "promql", "toml" },
+
     highlight = { enable = true },
     incremental_selection = { enable = true },
     textobjects = { enable = true },

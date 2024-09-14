@@ -5,21 +5,32 @@
     // "javascript",
     // "typescriptreact",
     // "typescript"
+    "cue"
   ],
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
   "typescript.preferences.includePackageJsonAutoImports": "on",
   "codeLens.enable": true,
   "java.referencesCodeLens.enabled": true,
+  "java.saveActions.organizeImports": true,
   "java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok.jar",
   "yaml.schemas": {
     "/tmp/schemas.json": "test.yaml"
   },
+  "rust-analyzer.cargo.features": "all",
+  "rust-analyzer.lens.enable": false,
   "languageserver": {
     "terraform": {
       "command": "terraform-ls",
       "args": ["serve"],
       "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    },
+    "cue": {
+      "command": "cuepls",
+      "args": ["serve"],
+      "filetypes": ["cue"],
       "initializationOptions": {},
       "settings": {}
     }
