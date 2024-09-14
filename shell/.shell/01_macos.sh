@@ -3,6 +3,7 @@
 [[ $OSTYPE != darwin* ]] && return
 
 # use GNU coreutils instead of BSD coreutils
+prependpath "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
 prependpath "/usr/local/opt/coreutils/libexec/gnubin"
 
 # disable special creation/extraction of ._* files by tar, etc. on Mac OS X
