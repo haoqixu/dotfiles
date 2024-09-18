@@ -338,6 +338,7 @@ if has('mac')
     " macOS
     " let g:python_host_prog = $HOME . '/.virtualenvs/nvim-py2/bin/python'
     " let g:python3_host_prog = $HOME . '/.virtualenvs/nvim-py3/bin/python'
+    let g:python3_host_prog = '/usr/bin/python3'
 else
     " linux
     let g:python_host_prog = '/usr/bin/python2'
