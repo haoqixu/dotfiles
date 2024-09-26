@@ -1,6 +1,5 @@
 return {
   --Plug "majutsushi/tagbar", { "on": "TagbarToggle" }
-  "liuchengxu/vista.vim", -- Viewer & Finder for LSP symbols and tags in Vim
 
   { "mbbill/undotree",   cmd = "UndotreeToggle" },
   "scrooloose/nerdcommenter",
@@ -52,7 +51,6 @@ return {
       "honza/vim-snippets",
     },
   },
-  { "neoclide/coc.nvim", branch = "release" },
   -- Plug "github/copilot.vim"
 
 
@@ -60,13 +58,11 @@ return {
   -- Lint & formater
   -- --------------------------------
   "editorconfig/editorconfig-vim",
-  "dense-analysis/ale",
   "bufbuild/vim-buf",
   {
     "psf/black",
     branch = "stable"
   },
-  "junegunn/vim-easy-align",
   --Plug "janko/vim-test"
 
   -- --------------------------------

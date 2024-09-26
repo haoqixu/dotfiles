@@ -81,6 +81,14 @@ vim.opt.tm = 500
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "quickfix",
+  callback = function()
+    vim.opt_local.number = true
+    vim.opt_local.relativenumber = false
+  end
+})
+
 -- ============================================================================
 --  Colors and Fonts
 -- ============================================================================
@@ -140,3 +148,41 @@ if vim.fn.has("linux") ~= 0 then
   vim.g.python_host_prog = '/usr/bin/python2'
   vim.g.python3_host_prog = '/usr/bin/python3'
 end
+
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+
+vim.opt.magic = true
+
+vim.o.fileencodings = "utf8,cp936,gb18030,big5"
+
+vim.o.clipboard = "unnamed,unnamedplus"
+vim.keymap.set("c", "<c-n>", "<down>")
+vim.keymap.set("c", "<c-p>", "<up>")
+
+-- Return to last edit position when opening files
+-- vim.api.nvim_create_autocmd('BufRead', {
+--   callback = function(opts)
+--     vim.api.nvim_create_autocmd('BufWinEnter', {
+--       once = true,
+--       buffer = opts.buf,
+--       callback = function()
+--         local ft = vim.bo[opts.buf].filetype
+--         local last_known_line = vim.api.nvim_buf_get_mark(opts.buf, '"')[1]
+--         if
+--           not (ft:match('commit') and ft:match('rebase'))
+--           and last_known_line > 1
+--           and last_known_line <= vim.api.nvim_buf_line_count(opts.buf)
+--         then
+--           vim.api.nvim_feedkeys([[g`"]], 'nx', false)
+--         end
+--       end,
+--     })
+--   end,
+-- })
+vim.cmd [[
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+]]
