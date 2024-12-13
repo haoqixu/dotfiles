@@ -14,6 +14,7 @@ return {
         "gomod",
         "gosum",
         "gotmpl",
+        "gowork",
         "terraform",
         "hcl",
         "tsx",
@@ -26,12 +27,18 @@ return {
         "yaml",
         "graphql",
         "promql",
+        "python",
         "toml",
+        "zig",
       },
       highlight = { enable = true },
       incremental_selection = { enable = true },
       textobjects = { enable = true },
       indent = { enable = true },
     },
+
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   }
 }
