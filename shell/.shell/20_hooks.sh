@@ -24,17 +24,9 @@ appendpath "$HOME/.rvm/bin"
 [[ -d "$HOME/go/bin" ]] && appendpath "$HOME/go/bin"
 
 # Python
+# TODO: migrate to uv
 # pyenv: python version manager
 export PYTHONSTARTUP="$HOME/dotfiles/python/pythonstartup.py"
-export PIPENV_VENV_IN_PROJECT=1
-if [[ -d "$HOME/.pyenv" ]]; then
-    prependpath "$HOME/.pyenv/bin"
-    eval "$(pyenv init -)"
-    # eval "$(pyenv virtualenv-init -)"
-    export PYENV_ROOT="$HOME/.pyenv"
-fi
-
-[[ -s "$HOME/.rye/env" ]] && source "$HOME/.rye/env"
 
 # Golang
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
