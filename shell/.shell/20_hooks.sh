@@ -33,3 +33,4 @@ export PYTHONSTARTUP="$HOME/dotfiles/python/pythonstartup.py"
 
 # common utils
 prependpath "$HOME/bin"
+prependpath "$HOME/.local/bin"
