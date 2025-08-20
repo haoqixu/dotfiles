@@ -43,3 +43,22 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
+# history
+bindkey "^P" up-line-or-history
+bindkey "^N" down-line-or-history
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
+
+# movement
+bindkey "^B" backward-char
+bindkey "^F" forward-char
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+
+# editing
+bindkey "^K" kill-line
+bindkey "^Y" yank
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^X^e' edit-command-line
