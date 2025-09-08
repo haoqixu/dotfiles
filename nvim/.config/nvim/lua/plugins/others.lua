@@ -2,7 +2,6 @@ return {
   --Plug "majutsushi/tagbar", { "on": "TagbarToggle" }
 
   { "mbbill/undotree",   cmd = "UndotreeToggle" },
-  "scrooloose/nerdcommenter",
   --[[
   {
     "Yggdroot/indentLine",
