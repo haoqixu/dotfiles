@@ -44,6 +44,13 @@ return {
         capabilities = capabilities,
       })
 
+      vim.diagnostic.config({
+        virtual_lines = { current_line = true },
+        virtual_text = true,
+        underline = true,
+        signs = true,
+      })
+
       vim.lsp.config('rust_analyzer', {
         settings = {
           ["rust-analyzer"] = {
