@@ -1,73 +1,130 @@
 return {
   {
-    "neoclide/coc.nvim",
-
-    branch = "release",
+    "neovim/nvim-lspconfig",
     config = function()
-      -- Use `[g` and `]g` to navigate diagnostics
-      -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-      vim.keymap.set("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
-      vim.keymap.set("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
+      local function lsp_keymap(bufnr)
+        local bufopts = { noremap = true, silent = true, buffer = bufnr }
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+        vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+        vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+        vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, bufopts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+      end
 
-      -- GoTo code navigation.
-      vim.keymap.set("n", "gd", "<Plug>(coc-definition)", { silent = true })
-      vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-      vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", { silent = true })
-      vim.keymap.set("n", "gr", "<Plug>(coc-references)", { silent = true })
+      vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(ev)
+          lsp_keymap(ev.buf)
 
-      vim.keymap.set("n", "th", "<cmd>CocCommand document.toggleInlayHint<CR>", { silent = true })
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-      -- Formatting selected code.
-      vim.keymap.set("x", "<leader>cf", "<Plug>(coc-format-selected)")
-      vim.keymap.set("n", "<leader>cf", "<Plug>(coc-format-selected)")
-
-      -- Symbol renaming.
-      vim.keymap.set("n", "<leader>rn", "<Plug>(coc-rename)")
-
-
-      -- Applying code actions to the selected code block
-      -- Example: `<leader>aap` for current paragraph
-      vim.keymap.set("x", "<leader>a", "<Plug>(coc-codeaction-selected)")
-      vim.keymap.set("n", "<leader>a", "<Plug>(coc-codeaction-selected)")
-
-      -- Remap keys for applying code actions at the cursor position
-      vim.keymap.set("n", "<leader>ac", "<Plug>(coc-codeaction-cursor)")
-      -- Remap keys for apply code actions affect whole buffer
-      vim.keymap.set("n", "<leader>as", "<Plug>(coc-codeaction-source)")
-      -- Apply the most preferred quickfix action to fix diagnostic on the current line
-      vim.keymap.set("n", "<leader>qf", "<Plug>(coc-fix-current)")
-
-      -- Remap keys for applying refactor code actions
-      vim.keymap.set("n", "<leader>re", "<Plug>(coc-codeaction-refactor)", { silent = true })
-      vim.keymap.set("x", "<leader>r", "<Plug>(coc-codeaction-refactor-selected)", { silent = true })
-      vim.keymap.set("n", "<leader>r", "<Plug>(coc-codeaction-refactor-selected)", { silent = true })
-
-      -- Add `:Format` command to format current buffer
-      vim.api.nvim_create_user_command("Format", function()
-        vim.fn.CocActionAsync("format")
-      end, { nargs = 0 })
-
-      vim.api.nvim_create_user_command("Prettier", function()
-        vim.fn.CocAction("runCommand", "prettier.formatFile")
-      end, { nargs = 0 })
-
-      -- Highlight the symbol and its references when holding the cursor
-      vim.api.nvim_create_autocmd("CursorHold", {
-        callback = function()
-          vim.fn.CocActionAsync("highlight")
-        end
+          -- Auto-format ("lint") on save.
+          -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+          if not client:supports_method('textDocument/willSaveWaitUntil')
+              and client:supports_method('textDocument/formatting') then
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+              buffer = ev.buf,
+              callback = function()
+                vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
+              end,
+            })
+          end
+        end,
       })
 
-      -- Use K to show documentation in preview window.
-      vim.keymap.set("n", "K", function()
-        if vim.fn.index({ "vim", "help" }, vim.bo.filetype) >= 0 then
-          vim.cmd("h " .. vim.fn.expand("<cword>"))
-        elseif vim.fn["coc#rpc#ready"]() then
-          vim.fn.CocActionAsync("doHover")
-        else
-          vim.cmd("!" .. vim.bo.keywordprg .. " " .. vim.expand("<cword>"))
-        end
-      end, { silent = true })
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      vim.lsp.config('*', {
+        capabilities = capabilities,
+      })
+
+      vim.lsp.config('rust_analyzer', {
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              allFeatures = true,
+            },
+            checkOnSave = {
+              enable = true,
+            },
+            check = {
+              command = "clippy",
+            },
+            imports = {
+              group = {
+                enable = false,
+              },
+            },
+            completion = {
+              postfix = {
+                enable = false,
+              },
+              autoimport = {
+                enable = true,
+              },
+            },
+          },
+        },
+      })
+      vim.lsp.enable('rust_analyzer')
+
+      vim.lsp.config("gopls", {
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+          },
+        },
+      })
+      vim.lsp.enable("gopls")
+
+      vim.lsp.enable("ruff")
+      vim.lsp.enable("clangd")
+      vim.lsp.enable("buf_ls")
+      vim.lsp.enable("ts_ls")
+      vim.lsp.enable("cssls")
+      vim.lsp.enable("bashls")
+      vim.lsp.enable("jsonls")
+      vim.lsp.enable("yamlls")
+      vim.lsp.enable("zls")
+      vim.lsp.enable("tailwindcss")
+      vim.lsp.enable("cue")
+
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            runtime = {
+              version = 'LuaJIT',
+            },
+            diagnostics = {
+              globals = { 'vim' },
+            },
+          },
+        },
+      })
+      vim.lsp.enable("lua_ls")
+    end
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    config = function()
+      -- Get signatures (and _only_ signatures) when in argument lists.
+      require "lsp_signature".setup({
+        doc_lines = 0,
+        handler_opts = {
+          border = "none"
+        },
+      })
     end
   },
 }
